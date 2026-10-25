@@ -5,7 +5,7 @@
   "description": "Export your ChatGPT chats, images and settings to a folder on your computer.",
   "minimum_chrome_version": "122",
   "permissions": ["storage"],
-  "host_permissions": ["https://chatgpt.com/*", "https://*.oaiusercontent.com/*"],
+  "host_permissions": ["https://chatgpt.com/*"],
   "action": {
     "default_title": "Takeout for AI Chats",
     "default_popup": "popup.html",

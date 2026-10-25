@@ -346,7 +346,7 @@ function popupDone(state, exporterOpen) {
 export function popupView(state, { exporterOpen = true } = {}) {
   const phase = state?.phase;
   if (!state || phase === 'idle') {
-    return { ...popupBase(state), view: 'idle', title: 'Export your chats', line: 'Saves chats, images and settings to a folder.', showProgress: false, primary: { id: 'open-exporter', label: 'Open exporter' } };
+    return { ...popupBase(state), view: 'idle', title: 'Export your chats', line: 'Saves your ChatGPT chats, images and settings to a folder. More AI chat apps coming soon.', showProgress: false, primary: { id: 'open-exporter', label: 'Open exporter' } };
   }
   if (phase === 'done') return popupDone(state, exporterOpen);
   const view = EXPORTER_VIEWS[phase] ?? 'idle';

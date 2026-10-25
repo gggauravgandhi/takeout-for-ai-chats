@@ -16,7 +16,6 @@
     <symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
     <symbol id="i-circle-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
-    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
     <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
   </svg>
   <main>
@@ -73,40 +72,43 @@
       <div id="primary-slot"></div>
       <div id="secondary-slot" class="secondary"></div>
     </div>
-    <p id="hint" class="muted small" hidden>Use an empty folder. Use a separate folder per workspace.</p>
+    <p id="hint" class="muted small" hidden>Use an empty folder, and a separate folder for each workspace.</p>
 
     <section id="failures-section" class="failures" hidden>
       <h2 id="failures-title"></h2>
       <ul id="failure-list" class="failure-list"></ul>
     </section>
 
-    <details id="activity" class="disclosure" hidden>
-      <summary><span>Activity</span><svg class="icon icon-sm chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+    <section id="activity" class="activity" aria-labelledby="activity-title" hidden>
+      <h2 id="activity-title">Activity</h2>
       <div id="log" class="log" role="log" tabindex="0" aria-label="Activity log"></div>
-    </details>
+    </section>
 
     <footer>
-      <details class="disclosure">
-        <summary><span>What gets exported</span><svg class="icon icon-sm chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-        <ul>
-          <li>Every chat as Markdown and JSON, including archived and project chats.</li>
-          <li>Uploaded files and generated images, saved next to their chat.</li>
-          <li>Memory, custom instructions, projects and the GPTs you used.</li>
-          <li>An INDEX.md, plus bundle files that merge all chats into a few big files.</li>
-          <li>Project files and code interpreter outputs are best effort and may be missing.</li>
-        </ul>
-      </details>
-      <details id="privacy" class="disclosure" tabindex="-1">
-        <summary><span>Privacy</span><svg class="icon icon-sm chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-        <ul>
-          <li>Everything stays on your computer. Your chats go only to the folder you choose.</li>
-          <li>It talks to chatgpt.com and the file links chatgpt.com returns. Your login is never sent to those links.</li>
-          <li>Nothing goes to the developer or third parties. No analytics, tracking or remote code.</li>
-          <li>It stores only its progress and a reference to your folder in this browser. Remove the extension to delete them.</li>
-          <li>It uses the same requests as the ChatGPT website, so it can break if ChatGPT changes.</li>
-        </ul>
-      </details>
-      <p class="legal muted">Export your ChatGPT chats to your computer. Not affiliated with OpenAI.</p>
+      <div class="info">
+        <section aria-labelledby="exported-title">
+          <h2 id="exported-title">What you get</h2>
+          <ul>
+            <li>Every chat as a readable Markdown file and as raw JSON, including archived chats and chats in projects.</li>
+            <li>Edited and regenerated replies, kept under "Other versions" at the end of each chat.</li>
+            <li>The images and files from your chats, saved next to the chat they belong to.</li>
+            <li>Your memory, custom instructions and projects.</li>
+            <li>An INDEX.md to browse everything, plus up to 20 bundle files that combine all chats for search or upload.</li>
+          </ul>
+          <p class="note">Project files, code interpreter outputs and very old images may no longer be available from ChatGPT.</p>
+        </section>
+        <section id="privacy" aria-labelledby="privacy-title" tabindex="-1">
+          <h2 id="privacy-title">Your privacy</h2>
+          <ul>
+            <li>Your chats go straight from ChatGPT to the folder you choose. Nothing passes through any other server.</li>
+            <li>It connects only to chatgpt.com and to the file links ChatGPT provides for your own files. Your login is never sent to those links.</li>
+            <li>No analytics, no tracking, no remote code.</li>
+            <li>This browser keeps only the export progress and a reference to your folder. Removing the extension deletes both.</li>
+          </ul>
+        </section>
+      </div>
+      <p class="supported"><span class="chip">Works with ChatGPT</span> Support for other major AI chat apps is coming soon.</p>
+      <p class="legal muted">It uses the same requests as the ChatGPT website, so a ChatGPT update can break it until a new version is released. Not affiliated with OpenAI. ChatGPT is a trademark of OpenAI.</p>
     </footer>
   </main>
 

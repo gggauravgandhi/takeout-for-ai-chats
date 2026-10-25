@@ -394,7 +394,7 @@ describe('doneSummary', () => {
 describe('popupView', () => {
   test('idle: one primary Open exporter', () => {
     const v = popupView(null, { exporterOpen: true });
-    expect(v).toMatchObject({ view: 'idle', title: 'Export your chats', line: 'Saves chats, images and settings to a folder.' });
+    expect(v).toMatchObject({ view: 'idle', title: 'Export your chats', line: 'Saves your ChatGPT chats, images and settings to a folder. More AI chat apps coming soon.' });
     expect(v.primary).toEqual({ id: 'open-exporter', label: 'Open exporter' });
     expect(v.secondary).toEqual([]);
   });

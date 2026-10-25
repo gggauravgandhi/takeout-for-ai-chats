@@ -2,7 +2,7 @@
 
 Date: 2026-10-25
 
-Takeout for AI Chats is a Chrome extension that saves your own ChatGPT data to a folder on your computer. This page explains what it touches and where that data goes.
+Takeout for AI Chats is a Chrome extension that saves your own ChatGPT data to a folder on your computer. It currently supports ChatGPT only. This page explains what the extension accesses and where that data goes.
 
 ## What the extension accesses
 
@@ -26,7 +26,7 @@ Treat the folder as sensitive and store or share it accordingly.
 
 ## Where that data goes
 
-Only to the folder you choose on your computer. Nothing is sent to the developer, to any server we run, or to any third party. The extension talks to chatgpt.com, plus the file download links chatgpt.com returns for your own files (these may be on other hosts, such as OpenAI storage or CDN). Your login token and cookies are never sent to those links. It only reads your own data.
+Only to the folder you choose on your computer. Nothing is sent to the developer, to any server we run, or to any third party. The extension connects only to chatgpt.com and to the file download links chatgpt.com returns for your own files (these can be on other OpenAI storage hosts). Your login token and cookies are never sent to those links. It only reads your own data.
 
 ## What we do not do
 
@@ -49,10 +49,9 @@ Only to the folder you choose on your computer. Nothing is sent to the developer
 
 - `storage`: save export progress (above).
 - `https://chatgpt.com/*`: read your own ChatGPT data with your existing login.
-- `https://*.oaiusercontent.com/*`: download your own files and images from ChatGPT's file host, using the signed links chatgpt.com returns. No login token or cookies are sent there.
 
 ## Contact and changes
 
-If this policy changes, the date above will change with it. Questions or reports: open an issue on the project's repository.
+If this policy changes, the date above will change with it. Questions or reports: open an issue at https://github.com/gggauravgandhi/takeout-for-ai-chats/issues.
 
 Not affiliated with OpenAI. ChatGPT is a trademark of OpenAI.

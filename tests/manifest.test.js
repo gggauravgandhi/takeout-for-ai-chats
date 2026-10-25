@@ -23,9 +23,9 @@ describe('manifest', () => {
     expect(Number(manifest.minimum_chrome_version)).toBeGreaterThanOrEqual(122);
   });
 
-  test('asks for exactly storage, chatgpt.com and its file host', () => {
+  test('asks for exactly storage and chatgpt.com', () => {
     expect(manifest.permissions).toEqual(['storage']);
-    expect(manifest.host_permissions).toEqual(['https://chatgpt.com/*', 'https://*.oaiusercontent.com/*']);
+    expect(manifest.host_permissions).toEqual(['https://chatgpt.com/*']);
     expect(manifest.optional_permissions).toBeUndefined();
   });
 

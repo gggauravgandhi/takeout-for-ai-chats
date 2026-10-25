@@ -186,7 +186,7 @@ function appendLog(line) {
 function onRetry({ waitMs, status }) {
   const seconds = Math.max(1, Math.round(waitMs / 1000));
   const rate = $('rate');
-  rate.textContent = status === 429 ? `Rate limited, waiting ${seconds}s` : `ChatGPT did not answer, retrying in ${seconds}s`;
+  rate.textContent = status === 429 ? `ChatGPT asked to slow down. Waiting ${seconds}s.` : `ChatGPT did not answer. Retrying in ${seconds}s.`;
   rate.hidden = false;
   clearTimeout(rateTimer);
   rateTimer = setTimeout(() => { rate.hidden = true; }, waitMs);
@@ -299,9 +299,8 @@ async function handleCommand({ cmd, id }) {
       case 'skip':
         return await skipChat(id);
       case 'show-privacy':
-        $('privacy').open = true;
         $('privacy').scrollIntoView({ behavior: 'smooth' });
-        $('privacy').querySelector('summary').focus();
+        $('privacy').focus({ preventScroll: true });
         return { ok: true };
       default:
         return { ok: false, reason: 'unknown' };

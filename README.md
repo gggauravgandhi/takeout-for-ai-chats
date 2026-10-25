@@ -2,7 +2,9 @@
 
 Export your ChatGPT chats to your computer: every chat as readable Markdown and raw JSON, the images and files in them, plus your memory, custom instructions and projects.
 
-Works with personal accounts and with Team/Business workspaces, where ChatGPT's built-in export is not available. Everything is written to a folder you choose. Nothing is sent anywhere else.
+Works with personal accounts and with Team/Business workspaces, where ChatGPT's built-in export is not available. Everything is written to a folder you choose, and nothing is sent anywhere else.
+
+**Supported today: ChatGPT.** Support for other major AI chat apps is coming soon.
 
 Not affiliated with OpenAI. ChatGPT is a trademark of OpenAI.
 
