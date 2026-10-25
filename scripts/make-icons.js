@@ -6,6 +6,9 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const SIZES = [16, 32, 48, 128];
+// Chrome Web Store: the 128px icon is 96px of art with 16px of transparent padding per side.
+// Toolbar sizes stay full bleed so they read at 16px.
+const INSET = { 128: 16 };
 const SAMPLES = 4; // SAMPLES x SAMPLES sub-pixels per pixel for smooth edges
 const BACKGROUND = [30, 58, 95];
 const FOREGROUND = [255, 255, 255];
@@ -41,12 +44,13 @@ const foreground = [
 
 // Average the sub-pixel samples of one pixel into [r, g, b, a].
 function pixel(col, row, size) {
-  const scale = 128 / size;
+  const inset = INSET[size] ?? 0;
+  const scale = 128 / (size - 2 * inset);
   let r = 0, g = 0, b = 0, hits = 0;
   for (let sy = 0; sy < SAMPLES; sy++) {
     for (let sx = 0; sx < SAMPLES; sx++) {
-      const x = (col + (sx + 0.5) / SAMPLES) * scale;
-      const y = (row + (sy + 0.5) / SAMPLES) * scale;
+      const x = (col - inset + (sx + 0.5) / SAMPLES) * scale;
+      const y = (row - inset + (sy + 0.5) / SAMPLES) * scale;
       if (!background(x, y)) continue;
       const [cr, cg, cb] = foreground.some((shape) => shape(x, y)) ? FOREGROUND : BACKGROUND;
       r += cr; g += cg; b += cb; hits++;

@@ -58,16 +58,26 @@ Matches [PRIVACY.md](../PRIVACY.md).
 
 The name avoids the ChatGPT mark (Chrome Web Store impersonation policy, OpenAI brand guidelines). ChatGPT is named only in the description, as the supported service.
 
-## Screenshots to capture (1280x800)
+## Images
 
-1. Popup mid-export: progress bar, counts, Pause button.
-2. Exporter tab with the folder chosen and the export running (progress, log).
-3. Failed chats list with Retry and Skip.
-4. Done state with the output folder open in Finder or Explorer.
-5. A generated Markdown chat file and INDEX.md open in an editor.
+| Store field | File | Status |
+|---|---|---|
+| Store icon (128x128, 96px art + 16px padding) | `icons/icon128.png` (inside the zip) | ready |
+| Small promo tile (440x280, required) | `store/promo-small-440x280.png` | ready |
+| Marquee promo (1400x560, optional) | `store/marquee-1400x560.png` | ready |
+| Screenshots (1280x800, 1 to 5, at least 1 required) | capture yourself, see below | to do |
 
-## Promo tile (small, 440x280)
-Teal background matching the icon (#0f766e), the white arrow-into-tray mark on the left, and the text "Takeout for AI Chats" plus "Save your chats to a folder" on the right. No OpenAI logo or colors.
+Regenerate the promo images with `swift scripts/store-assets.swift` and the icons with `bun scripts/make-icons.js`.
+
+Screenshots must show the real extension, full bleed, 1280x800, PNG or JPEG without transparency. Suggested set:
+
+1. Exporter tab during an export: big percent, progress bar, counts.
+2. The "Export complete" dialog.
+3. The popup during an export, placed on a plain 1280x800 background.
+4. An exported chat open in a Markdown viewer, with an image inline.
+5. INDEX.md open, showing chats grouped by project and month.
+
+Avoid showing private chat titles: use a test account or blur them.
 
 ## Publish checklist
 

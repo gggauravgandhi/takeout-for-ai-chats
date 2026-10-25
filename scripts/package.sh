@@ -6,7 +6,7 @@ cd "$(dirname "$0")/.."
 bun test
 rm -rf dist && mkdir -p dist
 zip -q -r dist/takeout-for-ai-chats.zip . \
-  -x '.git/*' 'dist/*' 'tests/*' 'docs/*' 'scripts/*' 'node_modules/*' \
+  -x '.git/*' 'dist/*' 'store/*' 'tests/*' 'docs/*' 'scripts/*' 'node_modules/*' \
      '.gitignore' 'README.md' 'icons/icon.svg' '*.DS_Store'
 # Every file a page or the manifest points at must be in the zip.
 for ref in $(grep -ohE '(href|src)="[^"#:]+"' ./*.html | sed -E 's/.*="(.*)"/\1/') \
