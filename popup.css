@@ -1,0 +1,23 @@
+body { width: 340px; }
+main { padding: var(--s4); display: grid; gap: var(--s4); }
+h1 { font-size: var(--t20); line-height: 1.25; font-weight: var(--w-strong); }
+
+.status { display: grid; gap: var(--s3); justify-items: start; }
+.status > * { width: 100%; }
+.status > .tick { width: 48px; }
+.progress { display: grid; gap: var(--s3); }
+.progress-head { display: flex; align-items: baseline; gap: var(--s3); }
+.pct { font-size: var(--t28); line-height: 1.1; font-weight: var(--w-strong); }
+.stats { gap: var(--s5); }
+.stats dd { font-size: var(--t16); }
+
+.notice { padding: var(--s2) var(--s3); border-radius: var(--r-sm); background: var(--warning-soft); color: var(--warning-ink); }
+
+.actions { display: grid; gap: var(--s1); }
+.actions .btn { width: 100%; }
+.secondary { display: grid; gap: var(--s1); }
+.secondary:has(.btn-default) { grid-auto-flow: column; grid-auto-columns: 1fr; }
+
+footer { display: flex; justify-content: center; border-top: 1px solid var(--border); padding-top: var(--s3); }
+footer a { display: inline-flex; align-items: center; gap: var(--s2); min-height: 28px; color: var(--muted); text-decoration: none; }
+footer a:hover { text-decoration: underline; }

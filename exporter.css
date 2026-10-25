@@ -1,0 +1,56 @@
+main { max-width: 640px; margin: 0 auto; padding: var(--s5) var(--s4) var(--s6); display: grid; gap: var(--s5); }
+h1 { font-size: var(--t28); line-height: 1.2; font-weight: var(--w-strong); }
+h1:focus { outline: none; }
+h2 { font-size: var(--t16); font-weight: var(--w-strong); }
+.intro { display: grid; gap: var(--s2); }
+
+.checklist { list-style: none; padding: 0; display: grid; gap: var(--s2); }
+.checklist li { display: flex; align-items: center; gap: var(--s3); padding: var(--s3) var(--s4); background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); }
+.checklist li > span { flex: 1; }
+.checklist li[data-tone="danger"] { background: var(--danger-soft); color: var(--danger-ink); border-color: transparent; }
+.checklist a { color: inherit; font-weight: var(--w-medium); }
+
+.pill { display: flex; align-items: center; gap: var(--s3); padding: var(--s1) var(--s1) var(--s1) var(--s4); background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); }
+.pill-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: var(--w-medium); }
+
+.progress { display: grid; gap: var(--s3); }
+.pct { font-size: var(--t40); line-height: 1.1; font-weight: var(--w-strong); }
+.progress-label { font-size: var(--t16); font-weight: var(--w-medium); }
+.current { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-height: 1.5em; }
+
+.done-summary { display: flex; align-items: center; gap: var(--s3); }
+
+.notice { padding: var(--s3) var(--s4); border-radius: var(--r-md); background: var(--warning-soft); color: var(--warning-ink); }
+
+.actions { display: grid; gap: var(--s2); justify-items: start; }
+#primary-slot .btn { min-width: 200px; }
+.secondary { display: flex; flex-wrap: wrap; gap: var(--s2); }
+
+.failures { display: grid; gap: var(--s3); }
+.failure-list { list-style: none; padding: 0; max-height: 280px; overflow-y: auto; border: 1px solid var(--border); border-radius: var(--r-md); background: var(--surface); }
+.failure-list li { display: flex; align-items: center; gap: var(--s3); padding: var(--s2) var(--s3) var(--s2) var(--s4); }
+.failure-list li + li { border-top: 1px solid var(--border); }
+.failure-text { flex: 1; min-width: 0; display: grid; }
+.failure-title, .failure-error { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.failure-error { font-size: var(--t12); color: var(--muted); }
+.failure-buttons { display: flex; flex: none; }
+
+.disclosure { border-top: 1px solid var(--border); }
+.disclosure summary { display: flex; align-items: center; justify-content: space-between; min-height: 44px; cursor: pointer; font-weight: var(--w-medium); font-size: var(--t14); list-style: none; }
+.disclosure summary::-webkit-details-marker { display: none; }
+.chev { transition: transform var(--dur-in) var(--ease); }
+.disclosure[open] .chev { transform: rotate(180deg); }
+.disclosure ul { padding: 0 0 var(--s3) var(--s4); display: grid; gap: var(--s2); font-size: var(--t14); color: var(--muted); }
+.disclosure:focus { outline: none; }
+.log { max-height: 220px; overflow-y: auto; margin-bottom: var(--s3); padding: var(--s2) var(--s3); background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-sm); font: var(--t12)/1.6 var(--mono); }
+.log div { overflow-wrap: anywhere; }
+footer { display: grid; }
+.legal { font-size: var(--t12); padding-top: var(--s3); border-top: 1px solid var(--border); }
+
+.dialog { width: min(420px, calc(100vw - 2 * var(--s4))); margin: auto; padding: var(--s5); border: 1px solid var(--border); border-radius: var(--r-lg); background: var(--surface); color: var(--text); text-align: center; opacity: 0; transform: scale(0.96); transition: opacity var(--dur-out) var(--ease), transform var(--dur-out) var(--ease), overlay var(--dur-out) allow-discrete, display var(--dur-out) allow-discrete; }
+.dialog[open] { display: grid; justify-items: center; gap: var(--s3); opacity: 1; transform: none; transition-duration: var(--dur-in); }
+.dialog::backdrop { background: var(--scrim); opacity: 0; transition: opacity var(--dur-out) var(--ease), overlay var(--dur-out) allow-discrete, display var(--dur-out) allow-discrete; }
+.dialog[open]::backdrop { opacity: 1; }
+@starting-style { .dialog[open] { opacity: 0; transform: scale(0.96); } .dialog[open]::backdrop { opacity: 0; } }
+.dialog h2 { font-size: var(--t20); }
+.dialog-actions { display: grid; gap: var(--s2); width: 100%; margin-top: var(--s3); }

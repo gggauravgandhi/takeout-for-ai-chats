@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>Takeout for AI Chats</title>
+  <rect x="5" y="5" width="118" height="118" rx="28" fill="#1e3a5f"/>
+  <g fill="#ffffff">
+    <rect x="56" y="23" width="16" height="38"/>
+    <polygon points="38,59 90,59 64,87"/>
+    <rect x="31" y="72" width="10" height="30"/>
+    <rect x="87" y="72" width="10" height="30"/>
+    <rect x="31" y="92" width="66" height="10"/>
+  </g>
+</svg>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Takeout for AI Chats</title>
+  <link rel="stylesheet" href="ui.css">
+  <link rel="stylesheet" href="exporter.css">
+</head>
+<body>
+  <svg hidden aria-hidden="true" focusable="false">
+    <symbol id="i-user-check" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-window" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20"/><path d="M6 4v4"/><path d="M10 4v4"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+    <symbol id="i-circle-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  </svg>
+  <main>
+    <header class="brand"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" class="mark-bg"/><path class="mark-fg" d="M12 5.5v8M8.5 10.5 12 14l3.5-3.5M6.5 17.5h11"/></svg><span>Takeout for AI Chats</span></header>
+
+    <div id="banner" class="banner" data-tone="warning" role="status" hidden>
+      <svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg>
+      <p id="banner-text"></p>
+      <a id="banner-link" href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" hidden>Log in</a>
+    </div>
+
+    <section class="intro">
+      <h1 id="title" tabindex="-1"></h1>
+      <p id="subtitle" class="muted" hidden></p>
+    </section>
+
+    <ul id="checklist" class="checklist" hidden>
+      <li id="row-login">
+        <svg class="icon" aria-hidden="true"><use href="#i-user-check"/></svg>
+        <span id="row-login-text">Logged in to chatgpt.com</span>
+        <a id="row-login-link" href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" hidden>Log in</a>
+      </li>
+      <li><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg><span>Right workspace selected in ChatGPT (personal or Team)</span></li>
+      <li><svg class="icon" aria-hidden="true"><use href="#i-window"/></svg><span>Keep this tab open while it runs</span></li>
+    </ul>
+
+    <div id="folder-pill" class="pill" hidden>
+      <svg class="icon" aria-hidden="true"><use href="#i-folder"/></svg>
+      <span id="folder-name" class="pill-name"></span>
+      <button type="button" class="btn btn-text" data-action="change-folder">Change</button>
+    </div>
+
+    <section id="progress" class="progress" hidden>
+      <p id="pct" class="pct num" hidden></p>
+      <p id="progress-label" class="progress-label" aria-live="polite"></p>
+      <div id="bar" class="bar" role="progressbar" aria-label="Export progress" aria-valuemin="0" aria-valuemax="100"><div class="bar-fill"></div></div>
+      <p id="current" class="current muted small"></p>
+      <p id="rate" class="small muted" role="status" hidden></p>
+      <dl class="stats">
+        <div><dt>Saved</dt><dd id="count-saved">0</dd></div>
+        <div><dt>Files</dt><dd id="count-files">0</dd></div>
+        <div id="stat-failed" class="stat-failed"><dt>Failed</dt><dd id="count-failed">0</dd></div>
+      </dl>
+    </section>
+
+    <section id="done-summary" class="done-summary" hidden>
+      <span class="tick"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-check"/></svg></span>
+      <p id="done-text" class="muted"></p>
+    </section>
+
+    <p id="notice" class="notice small" role="status" hidden></p>
+
+    <div class="actions">
+      <div id="primary-slot"></div>
+      <div id="secondary-slot" class="secondary"></div>
+    </div>
+    <p id="hint" class="muted small" hidden>Use an empty folder. Use a separate folder per workspace.</p>
+
+    <section id="failures-section" class="failures" hidden>
+      <h2 id="failures-title"></h2>
+      <ul id="failure-list" class="failure-list"></ul>
+    </section>
+
+    <details id="activity" class="disclosure" hidden>
+      <summary><span>Activity</span><svg class="icon icon-sm chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+      <div id="log" class="log" role="log" tabindex="0" aria-label="Activity log"></div>
+    </details>
+
+    <footer>
+      <details class="disclosure">
+        <summary><span>What gets exported</span><svg class="icon icon-sm chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+        <ul>
+          <li>Every chat as Markdown and JSON, including archived and project chats.</li>
+          <li>Uploaded files and generated images, saved next to their chat.</li>
+          <li>Memory, custom instructions, projects and the GPTs you used.</li>
+          <li>An INDEX.md, plus bundle files that merge all chats into a few big files.</li>
+          <li>Project files and code interpreter outputs are best effort and may be missing.</li>
+        </ul>
+      </details>
+      <details id="privacy" class="disclosure" tabindex="-1">
+        <summary><span>Privacy</span><svg class="icon icon-sm chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+        <ul>
+          <li>Everything stays on your computer. Your chats go only to the folder you choose.</li>
+          <li>It talks to chatgpt.com and the file links chatgpt.com returns. Your login is never sent to those links.</li>
+          <li>Nothing goes to the developer or third parties. No analytics, tracking or remote code.</li>
+          <li>It stores only its progress and a reference to your folder in this browser. Remove the extension to delete them.</li>
+          <li>It uses the same requests as the ChatGPT website, so it can break if ChatGPT changes.</li>
+        </ul>
+      </details>
+      <p class="legal muted">Export your ChatGPT chats to your computer. Not affiliated with OpenAI.</p>
+    </footer>
+  </main>
+
+  <dialog id="done-dialog" class="dialog" aria-labelledby="dialog-title" aria-describedby="dialog-message">
+    <span class="tick"><svg class="icon icon-lg" aria-hidden="true"><use href="#i-circle-check"/></svg></span>
+    <h2 id="dialog-title">Export complete</h2>
+    <p id="dialog-message" class="muted"></p>
+    <p id="dialog-attention" class="attention" hidden><svg class="icon icon-sm" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-primary" data-action="dialog-done" autofocus>Done</button>
+      <button id="dialog-retry" type="button" class="btn btn-default" data-action="dialog-retry" hidden></button>
+      <button type="button" class="btn btn-text" data-action="dialog-check">Check for new chats</button>
+    </div>
+  </dialog>
+  <script type="module" src="exporter.js"></script>
+</body>
+</html>

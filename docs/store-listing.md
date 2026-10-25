@@ -1,0 +1,81 @@
+# Chrome Web Store listing
+
+## Name
+Takeout for AI Chats
+
+## Short description (max 132 characters)
+Export your ChatGPT chats, images and settings to a folder on your computer.
+
+## Category
+Productivity
+
+## Detailed description
+
+Takeout for AI Chats saves your ChatGPT account to a folder on your computer, including Team/Business workspaces, where ChatGPT's built-in export is not available.
+
+What you get:
+- Your chats (every chat the account lists) as a readable Markdown file and as raw JSON, with archived chats and project chats included
+- Uploaded files and generated images, saved next to their chat
+- Your memory, custom instructions, projects, and GPTs used in your chats
+- INDEX.md and bundle files that merge everything into a few big Markdown files for search or backup
+
+Built for long exports (keep the exporter tab open and the computer awake; closing the tab pauses the export and Resume continues):
+- Progress bar and live status in the toolbar popup
+- Pause, resume and stop at any time
+- Failed chats are listed with Retry and Skip, and finished chats are re-exported only if they changed in ChatGPT
+- Rate limits are handled by waiting and retrying
+
+Private by design: your chats go from chatgpt.com (and the file download links it returns for your own files) to the folder you choose. Your login token and cookies are never sent to those links. Nothing is sent to the developer or any third party. No analytics, no tracking, no remote code.
+
+How to use: log in to chatgpt.com, click the extension icon, click Start export, choose a folder, and keep the tab open until it says Done.
+
+Please note: the extension uses the same internal requests as the ChatGPT website, exports your own data only, and may stop working if ChatGPT changes. Project files, GPT definitions and code interpreter output files are best effort.
+
+Not affiliated with OpenAI. ChatGPT is a trademark of OpenAI.
+
+## Single purpose statement
+Export the signed-in user's own ChatGPT chats, files, images and account settings to a folder the user chooses on their computer.
+
+## Permission justifications
+
+- `storage`: stores export progress (counts, current chat, failed chats) so the toolbar popup can show progress and the export can resume. The browser also keeps a reference to the chosen folder (IndexedDB) so you can resume. Nothing else is stored.
+- `https://chatgpt.com/*`: the extension reads the user's own conversations, files, memory, custom instructions and projects from chatgpt.com using the user's existing login. It also downloads files from the signed download links chatgpt.com returns for the user's own files, which may be on other OpenAI storage hosts. The login token and cookies are never sent to those links.
+- `https://*.oaiusercontent.com/*`: ChatGPT's file host. Older files and images are served from here through signed links that chatgpt.com returns. The permission lets the extension download them; it sends no token or cookies there and reads nothing else.
+
+No remote code is used. All code ships inside the package.
+
+## Data usage disclosure (Privacy practices tab)
+
+Matches [PRIVACY.md](../PRIVACY.md).
+
+- Data types the extension handles: Personally identifiable information (email and name from the account profile, written to account/me.json), Personal communications (chat content), Website content (chat files and images), Authentication information (it reads the login session token from chatgpt.com to make requests; the token is never stored or sent anywhere else). Tick only what the form lists and applies. All of it stays local: handled to write to the user's chosen folder, not transmitted to the developer.
+- Collected and transmitted off the user's device: none. All data is written only to a folder on the user's computer.
+- Certify: data is not sold to third parties; not used or transferred for purposes unrelated to the single purpose; not used for creditworthiness or lending.
+- Privacy policy URL: required, host PRIVACY.md (for example GitHub Pages) and paste the URL.
+
+## Naming
+
+The name avoids the ChatGPT mark (Chrome Web Store impersonation policy, OpenAI brand guidelines). ChatGPT is named only in the description, as the supported service.
+
+## Screenshots to capture (1280x800)
+
+1. Popup mid-export: progress bar, counts, Pause button.
+2. Exporter tab with the folder chosen and the export running (progress, log).
+3. Failed chats list with Retry and Skip.
+4. Done state with the output folder open in Finder or Explorer.
+5. A generated Markdown chat file and INDEX.md open in an editor.
+
+## Promo tile (small, 440x280)
+Teal background matching the icon (#0f766e), the white arrow-into-tray mark on the left, and the text "Takeout for AI Chats" plus "Save your chats to a folder" on the right. No OpenAI logo or colors.
+
+## Publish checklist
+
+- [ ] Register a Chrome Web Store developer account (one-time $5 fee).
+- [ ] Turn on 2-step verification for the Google account.
+- [ ] Host PRIVACY.md at a public URL (for example GitHub Pages) and note the URL.
+- [ ] Run `bun test` and a full manual export on a real account.
+- [ ] Build the zip: `scripts/package.sh` (runs the tests, writes `dist/takeout-for-ai-chats.zip`).
+- [ ] Check the zip contains no tests, docs or scripts: `unzip -l dist/takeout-for-ai-chats.zip`.
+- [ ] Upload the zip in the developer dashboard, fill the listing text above, add screenshots and the promo tile.
+- [ ] Fill Privacy practices (answers above), single purpose, permission justifications, and the privacy policy URL.
+- [ ] Submit for review.
