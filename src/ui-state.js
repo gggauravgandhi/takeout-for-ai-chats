@@ -146,7 +146,8 @@ export function badgeFor(state) {
 }
 
 /**
- * Which exporter-page buttons to show. Start, Resume and Retry need a folder with permission.
+ * Which exporter-page buttons to show. Start and Resume need a folder with permission. Retry only needs a saved
+ * folder: Chrome drops access when the tab reopens, and clicking Retry asks for it again.
  * @param {object|null|undefined} state engine state
  * @param {{ running: boolean, folderReady: boolean, starting?: boolean }} opts running = an engine run is alive in
  *   this tab, starting = a run is being set up (buttons that begin work stay disabled so it cannot start twice)
@@ -162,7 +163,7 @@ export function exporterControls(state, { running, folderReady, starting = false
     pause: running && isActive(state) ? 'enabled' : 'hidden',
     resume: paused ? 'enabled' : needsFolder(resumable),
     stop: running ? 'enabled' : 'hidden',
-    retry: needsFolder(!running && failureCount(state) > 0),
+    retry: !running && failureCount(state) > 0 ? (starting ? 'disabled' : 'enabled') : 'hidden',
   };
 }
 

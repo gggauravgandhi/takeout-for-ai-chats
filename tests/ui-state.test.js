@@ -221,10 +221,13 @@ describe('exporterControls', () => {
       start: 'enabled', pause: 'hidden', resume: 'hidden', stop: 'hidden', retry: 'hidden',
     });
   });
-  test('Start, Resume and Retry are disabled until a folder is ready', () => {
+  test('Start and Resume are disabled until a folder is ready', () => {
     const c = exporterControls(withState({ phase: 'done', failures: [{}] }), { running: false, folderReady: false });
     expect(c.start).toBe('disabled');
-    expect(c.retry).toBe('disabled');
+  });
+  test('Retry stays enabled when folder access lapsed, since the click asks for it again', () => {
+    const c = exporterControls(withState({ phase: 'done', failures: [{}] }), { running: false, folderReady: false });
+    expect(c.retry).toBe('enabled');
   });
   test('while working: Pause and Stop', () => {
     expect(exporterControls(base, busy)).toEqual({
